@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>amor.exe</title>
+
+<style>
+body {
+  background: black;
+  color: #00ffcc;
+  font-family: "Courier New", monospace;
+  text-align: center;
+  padding: 20px;
+}
+
+h1 {
+  color: #00ff99;
+}
+
+.terminal {
+  background: #111;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 800px;
+  margin: auto;
+  box-shadow: 0 0 20px #00ffcc;
+}
+
+button {
+  background: #00ff99;
+  border: none;
+  padding: 10px 20px;
+  color: black;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.galeria img {
+  width: 120px;
+  margin: 5px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.galeria img:hover {
+  transform: scale(1.2);
+}
+
+#mensajeFinal, #secreto {
+  display: none;
+  margin-top: 20px;
+  color: #ff4d6d;
+  font-size: 18px;
+}
+
+#loading {
+  font-size: 18px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>> Acceso autorizado: Misael 💚</h1>
+
+<p id="loading"></p>
+
+<div class="terminal" id="contenido" style="display:none;"></div>
+
+<!-- Música -->
+<audio id="musica" src="musica.mp3" loop></audio>
+<button onclick="playMusic()">🎶 Activar soundtrack</button>
+
+<script>
+// TEXTO TIPO HACKER
+let texto = [
+"> Iniciando sistema...",
+"> Cargando recuerdos...",
+"> Analizando sentimientos...",
+"> Resultado: eres el amor de mi vida 💕",
+"",
+"Nunca imaginé encontrar a alguien como tú...",
+"Tus ojitos verdes me encantan 💚",
+"",
+"Eres una persona increíble y única.",
+"",
+"Me encanta estar contigo:",
+"las citas en la camioneta 🚗",
+"las pelis 🎬",
+"los videojuegos 🎮",
+"",
+"Contigo puedo ser yo misma.",
+"",
+"Gracias por hacer mi vida tan bonita ❤️"
+];
+
+let i = 0;
+let j = 0;
+
+function escribir() {
+  if (i < texto.length) {
+    if (j < texto[i].length) {
+      document.getElementById("contenido").innerHTML += texto[i].charAt(j);
+      j++;
+      setTimeout(escribir, 30);
+    } else {
+      document.getElementById("contenido").innerHTML += "<br>";
+      i++;
+      j = 0;
+      setTimeout(escribir, 200);
+    }
+  } else {
+    document.getElementById("contenido").innerHTML += `
+    <br><button onclick="mostrarMensaje()">Ejecutar sentimiento.exe 💌</button>
+    <p id="mensajeFinal">Quiero compartir mi vida contigo 🥺💖</p>
+
+    <h2>🔐 Mensaje secreto</h2>
+    <input type="password" id="pass" placeholder="Ingresa contraseña">
+    <button onclick="verificar()">Desbloquear</button>
+    <p id="secreto">bobecito te amo,cada dia a tu lado es especial y el tiempo ha pasado tan rapido que ya 
+cumplimos un mes mas juntitos este tiempo ha sido suficiente para darme cuenta de que quiero estar contigo toda la vida y 
+de verdad espero que tengas las mismas ganas que yo de compartir un futuro, disfrutar estar juntos y
+ crear muchos recuerdos y momentos especiales que sean solo nuestros. Siempre voy a estar agradecida de tenerte en mi vida eres mi casualidad mas bonita, 
+es hermoso estar enamorada de ti y descurbir que no tenia idea de lo que se sentia amar. TE AMO 💞</p>
+
+    <h2>📸 Galería</h2>
+    <div class="galeria">
+      <img src="foto2.jpg.jpeg">
+      <img src="foto1.jpg.jpeg">
+      <img src="foto3.jpg.jpeg">
+    </div>
+    `;
+  }
+}
+
+// loading inicial
+let carga = 0;
+let load = setInterval(() => {
+  document.getElementById("loading").innerText = "Cargando acceso... " + carga + "%";
+  carga++;
+  if(carga >= 100){
+    clearInterval(load);
+    document.getElementById("loading").style.display = "none";
+    document.getElementById("contenido").style.display = "block";
+    escribir();
+  }
+}, 25);
+
+// botones
+function mostrarMensaje() {
+  document.getElementById("mensajeFinal").style.display = "block";
+}
+
+function verificar() {
+  let pass = document.getElementById("pass").value;
+  if(pass === "Bob"){
+    document.getElementById("secreto").style.display = "block";
+  } else {
+    alert("Contraseña incorrecta 💔");
+  }
+}
+
+function playMusic() {
+  let audio = document.getElementById("musica");
+  audio.play().catch(() => {
+    alert("Toca otra vez para activar la música 💚");
+  });
+}
+</script>
+
+</body>
+</html>
